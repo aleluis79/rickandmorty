@@ -1,16 +1,23 @@
-import { HttpClient } from '@angular/common/http';
-import { Injectable } from '@angular/core';
-import { map, Observable, of, switchMap } from 'rxjs';
+import { HttpClient, HttpBackend } from '@angular/common/http';
+import { inject, Injectable } from '@angular/core';
+import { delay, Observable, of, switchMap } from 'rxjs';
 
 @Injectable({
   providedIn: 'root'
 })
 export class CharacterService {
 
-  constructor(private readonly http: HttpClient) { }
+  private http: HttpClient;
+
+  private httpLoading: HttpClient;
+
+  constructor() {
+    this.http = new HttpClient(inject(HttpBackend));
+    this.httpLoading = inject(HttpClient);
+  }
 
   getCharacters(): Observable<Character[]> {
-    return this.http.get<RickAndMortyResponse>('https://rickandmortyapi.com/api/character').pipe(
+    return this.httpLoading.get<RickAndMortyResponse>('https://rickandmortyapi.com/api/character').pipe(
       switchMap(data => of(data.results))
     );
   }

@@ -21,7 +21,7 @@ import { Observable } from 'rxjs';
       </div>
       <button [routerLink]="['/character']">Back</button>
     </div>
-    <ng-template #elseBlock>Character not found</ng-template>
+    <ng-template #elseBlock>Loading character</ng-template>
   `,
   styles: [
   ]

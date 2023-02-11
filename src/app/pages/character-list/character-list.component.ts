@@ -44,7 +44,7 @@ import { RouterModule } from '@angular/router';
 })
 export class CharacterListComponent implements OnInit {
 
-  constructor(private readonly service: CharacterService) { }
+  constructor(private readonly service: CharacterService) {}
 
   characters$: Observable<Character[]> | undefined;
 
