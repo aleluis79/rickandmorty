@@ -7,7 +7,7 @@ import { CommonModule } from '@angular/common';
   imports: [CommonModule],
   template: `
     <p>
-      🐛 Rick and Morty 🧔
+      🐛 Rick and Morty 🐶
     </p>
   `,
   styles: [
