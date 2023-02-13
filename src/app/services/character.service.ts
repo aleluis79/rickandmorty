@@ -1,6 +1,6 @@
 import { HttpClient, HttpBackend } from '@angular/common/http';
 import { inject, Injectable } from '@angular/core';
-import { delay, Observable, of, switchMap } from 'rxjs';
+import { map, Observable } from 'rxjs';
 
 @Injectable({
   providedIn: 'root'
@@ -16,14 +16,14 @@ export class CharacterService {
     this.httpLoading = inject(HttpClient);
   }
 
-  getCharacters(): Observable<Character[]> {
-    return this.httpLoading.get<RickAndMortyResponse>('https://rickandmortyapi.com/api/character').pipe(
-      switchMap(data => of(data.results))
+  getCharacters(page: number = 1): Observable<Character[]> {
+    return this.httpLoading.get<RickAndMortyResponse>(`https://rickandmortyapi.com/api/character?page=${page}`).pipe(
+      map(data => data.results)
     );
   }
 
   getCharacter(id: number): Observable<Character> {
-    return this.http.get<Character>('https://rickandmortyapi.com/api/character/' + id);
+    return this.http.get<Character>(`https://rickandmortyapi.com/api/character/${id}`);
   }
 
 }
