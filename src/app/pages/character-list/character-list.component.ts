@@ -3,11 +3,12 @@ import { CommonModule } from '@angular/common';
 import { Character, CharacterService } from '../../services/character.service';
 import { Observable, of } from 'rxjs';
 import { RouterModule } from '@angular/router';
+import { PaginatorComponent } from "../../components/paginator/paginator.component";
 
 @Component({
   selector: 'app-character-list',
   standalone: true,
-  imports: [CommonModule, RouterModule],
+  imports: [CommonModule, RouterModule, PaginatorComponent],
   template: `
     <div class="character-container">
       <div class="character-card" *ngFor="let character of this.characters$ | async">
@@ -18,37 +19,28 @@ import { RouterModule } from '@angular/router';
       </div>
     </div>
     <br />
-    <div class="paginator">
-      <button (click)="goto(current-1)">Previous</button>{{current}}<button (click)="goto(current+1)">Next</button>
-    </div>
+    <app-paginator [current]="this.current" (change)="goto($event)" />
   `,
   styles: [
-  `
-  .character-container {
-    display: grid;
-    grid-template-columns: repeat(auto-fill, 200px);
-    grid-auto-rows: 250px;
-    grid-gap: 20px;
-    justify-content: center;
-  }
-
-  .character-card {
-    background-color: blueviolet;
-    border: solid 3px blueviolet;
-    color: snow;
-    text-align: center;
-
-    & img {
-      max-width: 100%;
+  /*css*/`
+    .character-container {
+      display: grid;
+      grid-template-columns: repeat(auto-fill, 200px);
+      grid-auto-rows: 250px;
+      grid-gap: 20px;
+      justify-content: center;
     }
-  }
 
-  .paginator {
-    display: flex;
-    justify-content: center;
-    align-items: center;
-    gap: 10px;
-  }
+    .character-card {
+      background-color: blueviolet;
+      border: solid 3px blueviolet;
+      color: snow;
+      text-align: center;
+
+      & img {
+        max-width: 100%;
+      }
+    }
   `
   ]
 })
