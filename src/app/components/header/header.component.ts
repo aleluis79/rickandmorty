@@ -1,19 +1,32 @@
 import { Component } from '@angular/core';
 import { CommonModule } from '@angular/common';
+import { DarkModeSwitchComponent } from '../dark-mode-switch/dark-mode-switch.component';
 
 @Component({
   selector: 'app-header',
   standalone: true,
-  imports: [CommonModule],
+  imports: [CommonModule, DarkModeSwitchComponent],
   template: `
-    <p>
-      🐛 Rick and Morty 🐶
-    </p>
+    <div class="container">
+      🐛 Rick and Morty
+      <div class="switch">☀️<app-dark-mode />🌙</div>
+    </div>
   `,
   styles: [
-    `
-      p {
-        text-align: center;
+    /*css*/`
+      .container {
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        gap: 10px;
+        padding: 20px;
+        color: var(--primary-font);
+      }
+
+      .switch {
+        display: flex;
+        justify-content: center;
+        align-items: center;
       }
     `
   ]

@@ -9,7 +9,7 @@ import { Observable } from 'rxjs';
   standalone: true,
   imports: [CommonModule, RouterModule],
   template: `
-    <div *ngIf="character$ | async as character; else elseBlock">
+    <div class="container" *ngIf="character$ | async as character; else elseBlock">
       <h3>{{character.name}}</h3>
       <div>
         Specie: {{character.species}}<br />
@@ -19,11 +19,18 @@ import { Observable } from 'rxjs';
       <div>
         <img src="{{character.image}}" />
       </div>
+      <br />
       <button [routerLink]="['/character']">Back</button>
     </div>
     <ng-template #elseBlock>Loading character</ng-template>
   `,
   styles: [
+    /*css*/`
+      .container {
+        margin: 50px;
+        color: var(--primary-font);
+      }
+    `
   ]
 })
 export class CharacterDetailComponent implements OnInit {

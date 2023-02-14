@@ -1,13 +1,32 @@
 /* You can add global styles to this file, and also import other style files */
 
+:root {
+  --primary-bg: snow;
+  --primary-font: black;
+  --secondary-bg: blueviolet;
+  --secondary-bg-hover: rgba(138, 43, 226, 0.9);
+  --secondary-font: snow;
+}
+
+body.darkMode {
+  --primary-bg: rgb(43, 42, 51);
+  --primary-font: snow;
+  --secondary-bg: blueviolet;
+  --secondary-bg-hover: rgba(138, 43, 226, 0.9);
+  --secondary-font: snow;
+}
+
+html, body { padding: 0; margin: 0;}
+
 body {
   font-family: Arial, Helvetica, sans-serif;
+  background-color: var(--primary-bg);
 }
 
 button {
-  background-color: blueviolet;
+  background-color: var(--secondary-bg);
   border-radius: 5px;
-  color: snow;
+  color: var(--secondary-font);
   border: none;
   min-width: 200px;
   min-height: 40px;
@@ -15,7 +34,7 @@ button {
 }
 
 button:hover {
-  background-color: rgba(138, 43, 226, 0.9);
+  background-color: var(--secondary-bg-hover);
   cursor: pointer;
 }
 

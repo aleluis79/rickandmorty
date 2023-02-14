@@ -17,6 +17,7 @@ import { CommonModule } from '@angular/common';
       justify-content: center;
       align-items: center;
       gap: 10px;
+      color: var(--primary-font);
     }
     `
   ]

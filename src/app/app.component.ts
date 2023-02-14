@@ -5,11 +5,14 @@ import { LoadingService } from './services/loading.service';
 @Component({
   selector: 'app-root',
   template: `
-    <app-header />
-    <ng-container *ngIf="loading$ | async">CARGANDO...</ng-container>
-    <router-outlet></router-outlet>
+    <div class="container">
+      <app-header />
+      <ng-container *ngIf="loading$ | async">CARGANDO...</ng-container>
+      <router-outlet></router-outlet>
+    </div>
   `,
-  styles: []
+  styles: [
+  ]
 })
 export class AppComponent implements AfterContentChecked {
 

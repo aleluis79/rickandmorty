@@ -32,14 +32,19 @@ import { PaginatorComponent } from "../../components/paginator/paginator.compone
     }
 
     .character-card {
-      background-color: blueviolet;
-      border: solid 3px blueviolet;
-      color: snow;
+      background-color: var(--secondary-bg);
+      border: solid 3px var(--secondary-bg);
+      color: var(--secondary-font);
       text-align: center;
+      transition: all 0.2s;
 
       & img {
         max-width: 100%;
       }
+    }
+
+    .character-card:hover {
+      transform: scale(1.05) rotate(5deg);
     }
   `
   ]
