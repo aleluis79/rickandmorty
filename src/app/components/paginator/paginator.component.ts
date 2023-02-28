@@ -7,7 +7,7 @@ import { CommonModule } from '@angular/common';
   imports: [CommonModule],
   template: `
     <div class="paginator">
-      <button (click)="goto(current-1)">Previous</button>{{current}}<button (click)="goto(current+1)">Next</button>
+      <button (click)="goto(current-1)">Previous</button>{{current}} / {{total}}<button (click)="goto(current+1)">Next</button>
     </div>
   `,
   styles: [
@@ -25,6 +25,7 @@ import { CommonModule } from '@angular/common';
 export class PaginatorComponent {
 
   @Input() current: number = 1;
+  @Input() total: number = 0;
 
   @Output('change') changeEvent = new EventEmitter<number>();
 

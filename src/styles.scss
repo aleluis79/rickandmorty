@@ -38,3 +38,6 @@ button:hover {
   cursor: pointer;
 }
 
+input:focus, a:focus {
+  outline: none;
+}

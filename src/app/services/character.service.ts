@@ -1,11 +1,13 @@
 import { HttpClient, HttpBackend } from '@angular/common/http';
 import { inject, Injectable } from '@angular/core';
-import { map, Observable } from 'rxjs';
+import { catchError, Observable, of } from 'rxjs';
 
 @Injectable({
   providedIn: 'root'
 })
 export class CharacterService {
+
+  private readonly baseUrl = 'https://rickandmortyapi.com/api/character';
 
   private http: HttpClient;
 
@@ -16,15 +18,30 @@ export class CharacterService {
     this.httpLoading = inject(HttpClient);
   }
 
-  getCharacters(page: number = 1): Observable<Character[]> {
-    return this.httpLoading.get<RickAndMortyResponse>(`https://rickandmortyapi.com/api/character?page=${page}`).pipe(
-      map(data => data.results)
-    );
+  getCharacter(id: number): Observable<Character> {
+    return this.http.get<Character>(`${this.baseUrl}/${id}`);
   }
 
-  getCharacter(id: number): Observable<Character> {
-    return this.http.get<Character>(`https://rickandmortyapi.com/api/character/${id}`);
+  searchCharacters(searchTerm: string, page: number): Observable<RickAndMortyResponse> {
+    const empty: RickAndMortyResponse = {
+      info: {
+        count: 0,
+        pages: 0,
+        next: '',
+        prev: null
+      },
+      results: []
+    }
+    if (searchTerm.length < 3) {
+      return of(empty);
+    }
+    return this.http.get<RickAndMortyResponse>(`${this.baseUrl}?name=${searchTerm}&page=${page}`).pipe(
+      catchError(() => {
+        return of(empty);
+      })
+    )
   }
+
 
 }
 
